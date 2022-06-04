@@ -37,7 +37,7 @@ function updateScreen(current, buffer) {
 
     else if ((buffer.length > 9 && buffer.includes("."))) {
         let roundDown = (buffer.length - 2) - buffer.indexOf(".");
-        console.log(roundDown);
+
         buffertOperand = Number(bufferOperand).toFixed(roundDown);
         updateScreen(currentOperand, bufferOperand);
         return;
@@ -86,8 +86,6 @@ function evaluate() { //evalute and update screen;
 }
 
 
-
-
 function resetSignButtons() {
     let buttons = document.querySelectorAll('.operator');
 
@@ -96,9 +94,9 @@ function resetSignButtons() {
     }
 }
 
-function updateBuffer(operator, button) {
+function updateBuffer(operator, button) { // update buffer on operator button press
     if (bufferOperand.length == 0) {
-        console.log(operator);
+
         bufferOperand = currentOperand;
         currentOperator = operator;
         currentOperand = "0";
@@ -107,14 +105,26 @@ function updateBuffer(operator, button) {
     }
     else {
         evaluate(currentOperand);
-        updateScreen(currentOperand, bufferOperand);
         bufferOperand = currentOperand;
         currentOperand = "0";
         currentOperator = operator;
         button.style.cssText = `background-color: ${darkBackgroundColor};`;
+        updateScreen(currentOperand, bufferOperand);
     }
 }
 
+
+function digitButtonPressed(digit) {
+    if (currentOperand.length >= 8) {
+
+        return;
+    }
+    if (currentOperand === "0") {
+        currentOperand = "";
+    }
+    currentOperand = currentOperand.concat(digit);
+    updateScreen(currentOperand, bufferOperand);
+}
 
 
 const clearButton = document.querySelector('.clear')
@@ -171,13 +181,9 @@ const decimalPointButton = document.querySelector('.decimal-point')
     });
 
 
-
-
-
-
 const evaluateButton = document.querySelector('.evaluate')
     .addEventListener('click', () => {
-        console.log("= button");
+
         if (currentOperator.length === 0) {
             return;
         }
@@ -194,7 +200,7 @@ const evaluateButton = document.querySelector('.evaluate')
     });
 
 
-
+// operators
 const additionButton = document.querySelector('.addition')
     .addEventListener('click', () => {
         updateBuffer("+", document.querySelector('.addition'));
@@ -217,21 +223,7 @@ const multiplyButton = document.querySelector('.multiply')
 
 
 
-
-function digitButtonPressed(digit) {
-    if (currentOperand.length >= 8) {
-        console.log("too long");
-        return;
-    }
-    if (currentOperand === "0") {
-        currentOperand = "";
-    }
-    currentOperand = currentOperand.concat(digit);
-    updateScreen(currentOperand, bufferOperand);
-}
-
-
-//buttons
+//digits
 const digit1Button = document.querySelector('.digit-1')
     .addEventListener('click', () => { digitButtonPressed("1") });
 const digit2Button = document.querySelector('.digit-2')
@@ -257,5 +249,3 @@ const digit0Button = document.querySelector('.digit-0')
         }
         digitButtonPressed("0")
     });
-
-
