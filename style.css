@@ -1,0 +1,108 @@
+html {
+    height: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0%;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgb(132, 135, 71);
+    background-color: rgb(237, 240, 188);
+    border-radius: 10px;
+    width: 350px;
+    height: 500px;
+
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgb(213, 213, 213);
+    height: 100px;
+    margin: 10px;
+    margin-bottom: 5px;
+    flex-shrink: 0;
+}
+
+.buffer-operand, .current-operand {
+
+    margin-left: auto;
+
+    font-family: monospace, sans-serif;
+    font-weight: 500px;
+    padding: 0px;
+}
+
+.buffer-operand {
+    font-size: 30px;
+    margin-right: 5px;
+    flex: 1;
+}
+
+
+.current-operand {
+    flex: 1;
+    font-size: 60px;
+    margin-top: -20px;
+}
+
+.row {
+    height: 65px;
+    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+
+    flex-shrink: 0;
+    display: flex;
+    gap: 5px;
+}
+
+button {
+    flex-basis: 100%;
+    font-family: monospace, sans-serif;
+    font-size: x-large;
+    font-weight: 500;
+    appearance: none;
+    background-color: #22e3c3;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    will-change: transform;
+}
+button:disabled {
+    pointer-events: none;
+}
+
+button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+button.evaluate {
+
+    flex-basis: 228%;
+}
+
+
+
